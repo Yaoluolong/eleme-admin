@@ -1,36 +1,26 @@
 import request from '@/utils/request'
 
-export function create(data, filename) {
+export function create(data) {
   return request({
     url: '/staff/create',
     method: 'post',
-    data: {
-      ...data,
-      filename
-    }
+    data
   })
 }
 
-export function update(data, filename, ori) {
+export function update(data) {
   return request({
     url: '/staff/update',
     method: 'post',
-    data: {
-      ...data,
-      filename,
-      ori
-    }
+    data,
   })
 }
 
-export function remove(id, url) {
+export function remove(id) {
   return request({
     url: '/staff/remove',
     method: 'post',
-    data: {
-      id,
-      url
-    }
+   id,
   })
 }
 

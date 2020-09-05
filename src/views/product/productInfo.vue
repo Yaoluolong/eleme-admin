@@ -17,8 +17,10 @@
         <el-input :disabled="commodityId" v-model="form.material" placeholder="请输入商品材料" size="small"></el-input>
       </el-form-item>
       <el-form-item :disabled="commodityId" label="商品类别" prop="sortId">
-        <el-radio v-model="form.sortId" label="1" >食物</el-radio>
-        <el-radio v-model="form.sortId" label="2" >饮料</el-radio>
+        <el-radio v-model="form.sortId" label="1" >甜品</el-radio>
+        <el-radio v-model="form.sortId" label="2" >小吃</el-radio>
+        <el-radio v-model="form.sortId" label="3" >饮料</el-radio>
+        <el-radio v-model="form.sortId" label="4" >套餐</el-radio>
       </el-form-item>
       <el-form-item label="商品描述" prop="details">
         <el-input type="textarea" v-model="form.details" size="small" placeholder="请输入商品描述" :rows="3"></el-input>

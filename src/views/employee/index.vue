@@ -116,7 +116,7 @@
           this.remove({
             staffId: id,
           }).then(res => {
-            if(res.code === '0') {
+            if(res.code == '0') {
               this.$message.success('删除成功');
               this.refresh();
             }
