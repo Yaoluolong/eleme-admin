@@ -116,7 +116,7 @@ export default {
         limit:this.listQuery.limit
       }
       this.list(params).then((data)=>{
-         this.commodity=data.list
+        this.commodity=data.data
         this.total=data.total
       })
     },
