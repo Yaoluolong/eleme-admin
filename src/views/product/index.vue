@@ -5,7 +5,7 @@
     </el-alert>
     <div class="combo">
       <hr class="dashline" />
-      <el-button type="primary" @click>+新增商品</el-button>
+      <el-button type="primary" @click="addDialogVisible=true">+新增商品</el-button>
       <el-row>
         <el-table :data="commodity">
           <el-table-column prop="commodityImageUrl" label="商品图片" align="center">
@@ -20,8 +20,8 @@
 
           <el-table-column label="操作" align="center" width="200">
             <template slot-scope="scope">
-              <el-button type="text" size="medium" @click>编辑</el-button>
-              <el-button type="text" size="medium" @click>删除</el-button>
+              <el-button type="text" size="medium" @click="handleEdit(scope.row.commodityId)">编辑</el-button>
+              <el-button type="text" size="medium" @click="handleDelete(scope.row.commodityId)">删除</el-button>
               <el-button type="text" size="medium" @click="detail(scope.row)">详情</el-button>
             </template>
           </el-table-column>
@@ -32,7 +32,7 @@
       </el-row>
       <el-dialog :title="'商品详情'" :visible.sync="dialogFormVisible" class="dialog-form">
         <el-form :model="form">
-          <el-form-item label="商品名称：" :label-width="formLabelWidth">
+          <el-form-item label="商品图片：" :label-width="formLabelWidth">
             <img :src="form.image" width="40" height="40" />
           </el-form-item>
           <el-form-item label="商品名称：" :label-width="formLabelWidth">
@@ -42,88 +42,146 @@
             <el-input v-model="form.money" disabled="true" />
           </el-form-item>
           <el-form-item label="商品描述：" :label-width="formLabelWidth">
-            <el-input v-model="form.details" disabled="true" />
+            <el-input v-model="form.describe" disabled="true" />
           </el-form-item>
           <el-form-item label="商品材料：" :label-width="formLabelWidth">
             <el-input v-model="form.material" disabled="true" />
           </el-form-item>
+          <el-form-item label="商品类别：" :label-width="formLabelWidth">
+            <el-input v-model="form.sort" disabled="true" />
+          </el-form-item>
         </el-form>
+      </el-dialog>
+
+      <el-dialog title="新增商品" v-if="addDialogVisible" :visible.sync="addDialogVisible" width="35%">
+        <product-info @done="addDoneCallback" @cancel="addCancel"></product-info>
+      </el-dialog>
+
+      <el-dialog title="修改商品" v-if="editDialogVisible" :visible.sync="editDialogVisible" width="35%">
+        <product-info @done="editDoneCallback" @cancel="editCancel" :commodityId="commodityId"></product-info>
       </el-dialog>
     </div>
   </div>
 </template>
 <script>
 import pagination from './pagination/pagination'
+import productInfo from'./productInfo'
+import {list,remove} from '@/api/commodity'
 export default {
   components: {
-    pagination
+    pagination,
+    productInfo
   },
   data() {
     return {
+      addDialogVisible: false,
+      editDialogVisible: false,
+      commodityId:'',
       dialogFormVisible: false,
       formLabelWidth: '150px',
+      listQuery: {
+        currentPage: 1,
+        limit: 10,
+        offset: 0
+      },
+      total:0,
       form: {
         image: '',
         name: '',
         money: '',
-        details: '',
-        material: ''
+        describe: '',
+        material: '',
+        sort:''
       },
-      commodity: [{
-        commodityId: '1',
-        commodityName: '鸡蛋',
-        commodityMoney: '10',
-        commodityImageUrl: require('./kkk.jpg'),
-        describe: '比较多',
-        materials: '鸡蛋'
-      },
-      {
-        commodityId: '2',
-        commodityName: '鸡蛋1',
-        commodityMoney: '10',
-        commodityImageUrl: require('./kkk.jpg'),
-        describe: '比较多1',
-        materials: '鸡蛋1'
-
-      },
-      {
-        commodityId: '3',
-        commodityName: '鸡蛋2',
-        commodityMoney: '10',
-        commodityImageUrl: require('./kkk.jpg'),
-        describe: '比较多2',
-        materials: '鸡蛋2'
-
-      },
-      {
-        commodityId: '4',
-        commodityName: '鸡蛋4',
-        commodityMoney: '10',
-        commodityImageUrl: require('./kkk.jpg'),
-        describe: '比较多4',
-        materials: '鸡蛋4'
-
-      },
-      {
-        commodityId: '5',
-        commodityName: '鸡蛋5',
-        commodityMoney: '10',
-        commodityImageUrl: require('./kkk.jpg'),
-        describe: '比较多5',
-        materials: '鸡蛋5'
-
-      }]
+      commodity: []
     }
+  },
+  created(){
+    this.getProduct()
   },
   methods: {
     detail(val) {
       this.form.name = val.commodityName
       this.form.money = val.commodityMoney
       this.form.image = val.commodityImageUrl
-      this.form.details = val.describe
+      this.form.describe = val.describe
       this.form.material = val.materials
+      this.form.sort = val.sortId
       this.dialogFormVisible = true
-    }
+    },
+    //获取商品
+    getProduct(){
+      let params={
+        offset:this.listQuery.offset,
+        limit:this.listQuery.limit
+      }
+      this.list(params).then((data)=>{
+         this.commodity=data.list
+        this.total=data.total
+      })
+    },
+    // 页码切换
+    pageChange(item) {
+      this.listQuery.currentPage = item.page;
+      this.listQuery.limit = item.limit;
+      this.listQuery.offset = (item.page - 1) * item.limit;
+      this.getProduct();
+    },
+    //增加完成
+    addDoneCallback() {
+      this.addDialogVisible = false;
+      this.refresh();
+      //重新刷新
+    },
+    //关闭增加页面
+    addCancel() {
+      this.addDialogVisible = false;
+    },
+    //编辑完成
+    editDoneCallback() {
+      this.editDialogVisible = false;
+      this.refresh();
+      //重新刷新
+    },
+    //关闭编辑页面
+    editCancel() {
+      this.editDialogVisible = false;
+    },
+    //打开编辑页面
+    handleEdit(id) {
+      this.commodityId = id;
+      this.editDialogVisible = true;
+    },
+    //删除商品
+    handleDelete(id) {
+      this.$confirm('商品删除之后不可恢复， 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.remove({
+          commodityId: id,
+        }).then(res => {
+          if(res.code === '0') {
+            this.$message.success('删除成功');
+            this.refresh();
+          }
+          else{
+            this.$message.error('删除失败');
+            this.refresh();
+          }
+        })
+      }).catch(() => {});
+    },
+    refresh() {
+      this.commodity=[],
+        this.listQuery= {
+        currentPage: 1,
+          limit: 10,
+          offset: 0
+      }
+      this.getProduct()
+    },
   }
 }
 </script>

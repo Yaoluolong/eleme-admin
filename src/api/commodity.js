@@ -7,6 +7,14 @@ export function list() {
   })
 }
 
+export function single(data) {
+  return request({
+    url: '/commodity/single',
+    method: 'post',
+    data
+  })
+}
+
 export function create(data) {
   return request({
     url: '/commodity/create',
@@ -23,13 +31,10 @@ export function update(data) {
   })
 }
 
-export function remove(id, files) {
+export function remove(id) {
   return request({
     url: '/commodity/remove',
     method: 'post',
-    data: {
-      id,
-      files
-    }
+    id
   })
 }
