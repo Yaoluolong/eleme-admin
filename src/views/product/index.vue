@@ -120,9 +120,9 @@ export default {
     },
     //获取商品
     getProduct(){
+      /*offset:this.listQuery.offset,
+       limit:this.listQuery.limit*/
       let params={
-        /*offset:this.listQuery.offset,
-        limit:this.listQuery.limit*/
         token:"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTk5MjgzNTgwLCJleHAiOjE1OTkyODcxODB9.dVwUgi2ZmsR_L6YE2VdkOd8uYlMYbXq_oKtdBKcVbrBOt7XsoQclf_0gKFcO5D8RY674w4N58UM_ci3vxu2byw"
       }
       list(params).then((data)=>{
