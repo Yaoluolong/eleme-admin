@@ -85,7 +85,7 @@
     created() {
       if(this.commodityId) {
         //存在则载入信息，初始化
-        this.single({commodityId: this.commodityId}).then(data => {
+        single({commodityId: this.commodityId}).then(data => {
           this.form.commodityImageUrl=data.commodityImageUrl;
           this.form.commodityName=data.commodityName;
           this.form.commodityMoney=data.commodityMoney;
@@ -107,7 +107,7 @@
           if(this.commodityId) {
             //update
             params.commodityId = this.commodityId;
-            this.update(params).then(data => {
+            update(params).then(data => {
               if(data.code==0) {
                 this.$message.success('更新商品成功！');
                 this.$emit('done');
@@ -119,7 +119,7 @@
             });
           } else {
             //new
-            this.create(params).then(data => {
+            create(params).then(data => {
               if(data.code==0) {
                 this.$message.success('创建商品成功！');
                 this.$emit('done');

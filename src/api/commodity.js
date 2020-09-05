@@ -1,16 +1,15 @@
 import request from '@/utils/request'
 
-export function list(token) {
+export function list() {
   return request({
     url: 'commdity/findAll.action',
-    method: 'post',
-    token
+    method: 'get',
   })
 }
 
 export function single(data) {
   return request({
-    url: '/commodity/single',
+    url: '/commdity/single',
     method: 'post',
     data
   })
@@ -18,7 +17,7 @@ export function single(data) {
 
 export function create(data) {
   return request({
-    url: '/commodity/add.action',
+    url: '/commdity/add.action',
     method: 'post',
     data
   })
@@ -26,7 +25,7 @@ export function create(data) {
 
 export function update(data) {
   return request({
-    url: '/commodity/edit.action',
+    url: '/commdity/edit.action',
     method: 'post',
     data
   })
@@ -34,7 +33,7 @@ export function update(data) {
 
 export function remove(id) {
   return request({
-    url: '/commodity/delete.action',
+    url: '/commdity/delete.action',
     method: 'post',
     id
   })
