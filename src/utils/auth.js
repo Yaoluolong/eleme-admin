@@ -1,10 +1,10 @@
 import Cookies from 'js-cookie'
 
 /*const TokenKey = 'Admin-Token'*/
-const TokenKey='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTk5MjgzNTgwLCJleHAiOjE1OTkyODcxODB9.dVwUgi2ZmsR_L6YE2VdkOd8uYlMYbXq_oKtdBKcVbrBOt7XsoQclf_0gKFcO5D8RY674w4N58UM_ci3vxu2byw'
+const TokenKey='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTk5MjkwODUyLCJleHAiOjE1OTkyOTQ0NTJ9.KoVwHSfHnisvMuRd54wVZQ7tkiU-HLB0zmwiBlqMuu7y_WM74PND6IET98lp1VnOcyG2CaKdjC6JUSNR1lSvVg'
 
 export function getToken() {
-  return Cookies.get(TokenKey)
+  return TokenKey
 }
 
 export function setToken(token) {

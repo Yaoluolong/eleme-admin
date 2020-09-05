@@ -97,7 +97,7 @@ export default {
     }
   },
   created(){
-    this.commodity=[{
+  /*  this.commodity=[{
       commodityId:1,
       commodityName:'123',
       commodityMoney:'456',
@@ -105,8 +105,8 @@ export default {
       describe:'123',
       materials:'777',
       sortId:'1'
-    }]
-   /* this.getProduct()*/
+    }]*/
+    this.getProduct()
   },
   methods: {
     detail(val) {
