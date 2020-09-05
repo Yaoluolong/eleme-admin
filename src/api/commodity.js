@@ -1,9 +1,10 @@
 import request from '@/utils/request'
 
-export function list() {
+export function list(token) {
   return request({
     url: 'commdity/findAll.action',
-    method: 'get'
+    method: 'post',
+    token
   })
 }
 

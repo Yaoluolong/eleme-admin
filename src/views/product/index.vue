@@ -84,7 +84,7 @@ export default {
         limit: 10,
         offset: 0
       },
-      total:0,
+      total:6,
       form: {
         image: '',
         name: '',
@@ -97,6 +97,15 @@ export default {
     }
   },
   created(){
+    /*this.commodity={
+      commodityId:1,
+      commodityName:'123',
+      commodityMoney:'456',
+      commodityImageUrl:'.kkk.jpg',
+      describe:'123',
+      materials:'777',
+      sortId:'1'
+    }*/
     this.getProduct()
   },
   methods: {
@@ -112,10 +121,11 @@ export default {
     //获取商品
     getProduct(){
       let params={
-        offset:this.listQuery.offset,
-        limit:this.listQuery.limit
+        /*offset:this.listQuery.offset,
+        limit:this.listQuery.limit*/
+        token:"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTk5MjgzNTgwLCJleHAiOjE1OTkyODcxODB9.dVwUgi2ZmsR_L6YE2VdkOd8uYlMYbXq_oKtdBKcVbrBOt7XsoQclf_0gKFcO5D8RY674w4N58UM_ci3vxu2byw"
       }
-      this.list(params).then((data)=>{
+      list(params).then((data)=>{
         this.commodity=data.data
         this.total=data.total
       })
@@ -159,7 +169,7 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        this.remove({
+       remove({
           commodityId: id,
         }).then(res => {
           if(res.code === '0') {
