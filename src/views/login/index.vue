@@ -142,7 +142,7 @@ export default {
       this.$refs.loginForm.validate((valid) => {
         if (valid) {
           this.loading = true
-          this.login(this.loginForm).then(() => {
+          login(this.loginForm).then(() => {
             this.$store.commit('user/SET_TOKEN', 'token')
             setToken('token')
                  this.$router.push({
