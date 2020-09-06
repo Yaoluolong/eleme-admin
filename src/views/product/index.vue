@@ -166,15 +166,12 @@ export default {
     },
     //删除商品
     handleDelete(id) {
-      let params={
-        commodityId: id,
-      }
       this.$confirm('商品删除之后不可恢复， 是否继续?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-       remove(params).then(res => {
+       remove({commodityId:id}).then(res => {
           if(res.code === 0) {
             this.$message.success('删除成功');
             this.refresh();

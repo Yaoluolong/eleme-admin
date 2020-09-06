@@ -14,7 +14,7 @@ export function single(data) {
   return request({
     url: '/commdity/findOne',
     method: 'post',
-    data:{ data}
+    data
 
   })
 }
@@ -38,7 +38,7 @@ export function update(data) {
 export function remove(id) {
   return request({
     url: '/commdity/delete.action',
-    method: 'get',
-     data:{id}
+    method: 'post',
+     id
   })
 }
