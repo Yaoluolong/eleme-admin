@@ -4,9 +4,7 @@ export function list(data) {
   return request({
     url: 'commdity/findAll.action',
     method: 'get',
-    data:{
       data
-    }
   })
 }
 
@@ -35,10 +33,10 @@ export function update(data) {
   })
 }
 
-export function remove(id) {
+export function remove(data) {
   return request({
     url: '/commdity/delete.action',
     method: 'post',
-     id
+     data
   })
 }
