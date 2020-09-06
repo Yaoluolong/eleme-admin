@@ -1,5 +1,5 @@
 module.exports = {
-  title: '小洛家政·商家',
+  title: '企业点餐系统',
 
   /**
    * @type {boolean} true | false
