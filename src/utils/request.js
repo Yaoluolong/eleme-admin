@@ -25,6 +25,7 @@ service.interceptors.response.use(
     const res = response.data
     console.log(res.code !== 0)
     if (res.code !== 0) {
+      console.log(123)
       Message({
         message: res.msg || '连接错误',
         type: 'success',
