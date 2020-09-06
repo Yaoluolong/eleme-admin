@@ -124,7 +124,7 @@ export default {
         offset:this.listQuery.offset,
         limit:this.listQuery.limit
       }
-      list().then((data)=>{
+      list(params).then((data)=>{
         this.commodity=data.data
         this.commodity.forEach(item =>{
           item.commodityImageUrl=require('./'+item.commodityImageUrl)
