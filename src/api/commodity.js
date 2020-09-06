@@ -39,6 +39,6 @@ export function remove(id) {
   return request({
     url: '/commdity/delete.action',
     method: 'get',
-      id
+     data:{id}
   })
 }
