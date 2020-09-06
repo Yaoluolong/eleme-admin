@@ -130,6 +130,7 @@ export default {
           item.commodityImageUrl=require('./'+item.commodityImageUrl)
         })
         this.total=data.total
+        console.log(data.total)
       })
     },
     // 页码切换
