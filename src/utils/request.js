@@ -23,9 +23,7 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   response => {
     const res = response.data
-    console.log(res.code !== 0)
-    if (res.code !== 0) {
-      console.log(123)
+    if (parseInt(res.code) !== 0) {
       Message({
         message: res.msg || '连接错误',
         type: 'success',
