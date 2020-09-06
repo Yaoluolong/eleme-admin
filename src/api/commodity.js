@@ -10,8 +10,9 @@ export function list() {
 export function single(data) {
   return request({
     url: '/commdity/findOne',
-    method: 'post',
-    data
+    method: 'get',
+    data:{ data}
+
   })
 }
 
@@ -19,7 +20,7 @@ export function create(data) {
   return request({
     url: '/commdity/add.action',
     method: 'post',
-    data
+    data:{ data}
   })
 }
 
@@ -27,7 +28,7 @@ export function update(data) {
   return request({
     url: '/commdity/edit.action',
     method: 'post',
-    data
+    data:{ data}
   })
 }
 
@@ -35,6 +36,8 @@ export function remove(id) {
   return request({
     url: '/commdity/delete.action',
     method: 'post',
-    id
+    data:{
+      id
+    }
   })
 }
