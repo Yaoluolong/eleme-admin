@@ -84,7 +84,7 @@ export default {
         limit: 10,
         offset: 0
       },
-      total:6,
+      total:0,
       form: {
         image: '',
         name: '',
@@ -97,15 +97,15 @@ export default {
     }
   },
   created(){
-  /*  this.commodity=[{
+    this.commodity=[{
       commodityId:1,
       commodityName:'123',
       commodityMoney:'456',
-      commodityImageUrl:require('./kkk.jpg'),
+      commodityImageUrl:'kkk.jpg',
       describe:'123',
       materials:'777',
       sortId:'1'
-    }]*/
+    }]
     this.getProduct()
   },
   methods: {
@@ -120,13 +120,16 @@ export default {
     },
     //获取商品
     getProduct(){
-      /*offset:this.listQuery.offset,
-       limit:this.listQuery.limit*/
       let params={
+        offset:this.listQuery.offset,
+        limit:this.listQuery.limit
       }
       list().then((data)=>{
         this.commodity=data.data
-       /* this.total=data.total*/
+        this.commodity.forEach(item =>{
+          item.commodityImageUrl=require('./'+item.commodityImageUrl)
+        })
+        this.total=data.total
       })
     },
     // 页码切换

@@ -64,6 +64,7 @@
 <script>
 import { validUsername } from '@/utils/validate'
 import { setToken } from '@/utils/auth'
+import{login} from '@/api/staff'
 
 export default {
   name: 'Login',
@@ -141,6 +142,18 @@ export default {
       this.$refs.loginForm.validate((valid) => {
         if (valid) {
           this.loading = true
+          this.login(this.loginForm).then(() => {
+            this.$store.commit('user/SET_TOKEN', 'token')
+            setToken('token')
+                 this.$router.push({
+                  path: this.redirect || '/',
+                  query: this.otherQuery
+                })
+                this.loading = false
+               })
+               .catch(() => {
+                 this.loading = false
+              })
 
           // 连接到后端调试
           // this.$store
@@ -157,10 +170,10 @@ export default {
           //   })
 
           // 无接口
-          this.$store.commit('user/SET_TOKEN', 'token')
+          /*this.$store.commit('user/SET_TOKEN', 'token')
           setToken('token')
           this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
-          this.loading = false
+          this.loading = false*/
         } else {
           console.log('error submit!!')
           return false

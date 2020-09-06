@@ -13,8 +13,8 @@
       <el-form-item label="商品价格" prop="commodityMoney">
         <el-input v-model="form.commodityMoney" placeholder="请输入商品价格" size="small"></el-input>
       </el-form-item>
-      <el-form-item  label="商品材料" prop="commodityMoney">
-        <el-input :disabled="commodityId" v-model="form.material" placeholder="请输入商品材料" size="small"></el-input>
+      <el-form-item  label="商品材料" prop="materials">
+        <el-input :disabled="commodityId" v-model="form.materials" placeholder="请输入商品材料" size="small"></el-input>
       </el-form-item>
       <el-form-item :disabled="commodityId" label="商品类别" prop="sortId">
         <el-radio v-model="form.sortId" label="1" >甜品</el-radio>
@@ -22,8 +22,8 @@
         <el-radio v-model="form.sortId" label="3" >饮料</el-radio>
         <el-radio v-model="form.sortId" label="4" >套餐</el-radio>
       </el-form-item>
-      <el-form-item label="商品描述" prop="details">
-        <el-input type="textarea" v-model="form.details" size="small" placeholder="请输入商品描述" :rows="3"></el-input>
+      <el-form-item label="商品描述" prop="describe">
+        <el-input type="textarea" v-model="form.describe" size="small" placeholder="请输入商品描述" :rows="3"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="submit" size="small">保存</el-button>
@@ -44,9 +44,9 @@
           commodityImageUrl:'',
           commodityName:'',
           commodityMoney:'',
-          material:'',
+          materials:'',
           sortId:'',
-          details:'',
+          describe:'',
         },
         rules: {
           commodityImageUrl: [{
@@ -64,7 +64,7 @@
          message: '请输入商品价格',
          trigger: 'blur'
        }],
-        material: [{
+        materials: [{
           required: true,
           message: '请输入商品材料',
           trigger: 'blur'
@@ -74,7 +74,7 @@
           message: '请选择商品种类',
           trigger: 'blur'
         }],
-          details: [{
+          describe: [{
             required: true,
             message: '请输入商品描述',
             trigger: 'blur'
@@ -104,30 +104,35 @@
           describe:this.form.describe,
         };
         this.$refs["form"].validate((valid) => {
-          if(this.commodityId) {
-            //update
-            params.commodityId = this.commodityId;
-            update(params).then(data => {
-              if(data.code==0) {
-                this.$message.success('更新商品成功！');
-                this.$emit('done');
-              }
-              else{
-                this.$message.error('更新商品失败！');
-                this.$emit('done');
-              }
-            });
-          } else {
-            //new
-            create(params).then(data => {
-              if(data.code==0) {
-                this.$message.success('创建商品成功！');
-                this.$emit('done');
-              }else{
-                this.$message.error('创建商品失败！');
-                this.$emit('done');
-              }
-            });
+
+          if(valid) {
+
+            if (this.commodityId) {
+              //update
+              params.commodityId = this.commodityId;
+              update(params).then(data => {
+                if (data.code == 0) {
+                  this.$message.success('更新商品成功！');
+                  this.$emit('done');
+                } else {
+                  this.$message.error('更新商品失败！');
+                  this.$emit('done');
+                }
+              });
+            } else {
+              //new
+              params.commodityName = this.form.commodityName
+              params.materials = this.form.materials
+              create(params).then(data => {
+                if (data.code == 0) {
+                  this.$message.success('创建商品成功！');
+                  this.$emit('done');
+                } else {
+                  this.$message.error('创建商品失败！');
+                  this.$emit('done');
+                }
+              });
+            }
           }
         });
       },

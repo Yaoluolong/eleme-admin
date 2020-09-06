@@ -1,5 +1,13 @@
 import request from '@/utils/request'
 
+export function login(data) {
+  return request({
+    url: '/staff/login',
+    method: 'post',
+    data,
+  })
+}
+
 export function create() {
   return request({
     url: '/staff/create',
