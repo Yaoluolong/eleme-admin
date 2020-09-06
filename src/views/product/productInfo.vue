@@ -3,8 +3,8 @@
     <el-form :model="form" :rules="rules" ref="form" label-width="120px" label-position="left">
       <el-form-item label="商品图片" prop="commodityImageUrl">
         <el-select v-model="form.commodityImageUrl" placeholder="请选择商品图片">
-          <el-option label="图片一" value="./kkk.jpg"></el-option>
-          <el-option label="图片二" value="./ccc.jpg"></el-option>
+          <el-option label="图片一" value="kkk.jpg"></el-option>
+          <el-option label="图片二" value="ccc.jpg"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item  label="商品名称" prop="commodityName">
