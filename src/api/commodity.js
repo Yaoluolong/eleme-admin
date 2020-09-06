@@ -13,7 +13,7 @@ export function list(data) {
 export function single(data) {
   return request({
     url: '/commdity/findOne',
-    method: 'get',
+    method: 'post',
     data:{ data}
 
   })
