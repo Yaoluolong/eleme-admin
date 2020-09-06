@@ -23,7 +23,7 @@ export function create(data) {
   return request({
     url: '/commdity/add.action',
     method: 'post',
-    data:{ data}
+     data
   })
 }
 
@@ -31,7 +31,7 @@ export function update(data) {
   return request({
     url: '/commdity/edit.action',
     method: 'post',
-    data:{ data}
+     data
   })
 }
 
