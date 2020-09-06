@@ -9,7 +9,7 @@ export function list() {
 
 export function single(data) {
   return request({
-    url: '/commdity/single',
+    url: '/commdity/findOne',
     method: 'post',
     data
   })
