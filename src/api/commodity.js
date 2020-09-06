@@ -38,9 +38,7 @@ export function update(data) {
 export function remove(id) {
   return request({
     url: '/commdity/delete.action',
-    method: 'post',
-    data:{
+    method: 'get',
       id
-    }
   })
 }
