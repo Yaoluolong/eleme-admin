@@ -36,8 +36,6 @@ const actions = {
         const { data } = response
         console.log(data.token)
         console.log(data.staffName)
-        console.log(data.data.token)
-        console.log(data.data.staffName)
         commit('SET_TOKEN', data.token)
         commit('SET_NAME', data.staffName)
         commit('SET_ROLES', [`${data.permissionId}`])

@@ -111,7 +111,7 @@
               //update
               params.commodityId = this.commodityId;
               update(params).then(data => {
-                if (data.code == 0) {
+                if (data.code === 0) {
                   this.$message.success('更新商品成功！');
                   this.$emit('done');
                 } else {
@@ -124,7 +124,7 @@
               params.commodityName = this.form.commodityName
               params.materials = this.form.materials
               create(params).then(data => {
-                if (data.code == 0) {
+                if (data.code === 0) {
                   this.$message.success('创建商品成功！');
                   this.$emit('done');
                 } else {
