@@ -127,7 +127,6 @@ export default {
       list(params).then((data)=>{
         this.commodity=data.data
         this.total=data.total
-        comsole.log(data.total)
         this.commodity.forEach(item =>{
           item.commodityImageUrl=require('./'+item.commodityImageUrl)
         })

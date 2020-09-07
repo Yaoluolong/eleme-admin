@@ -72,8 +72,6 @@
         list(params).then((data)=>{
           this.staff=data.data
           this.total=data.total
-          console.log(data)
-          console.log(data.total)
         })
       },
       // 页码切换
