@@ -19,7 +19,7 @@
 </template>
 
 <script type="text/javascript">
-  import {single,create,update} from '@/api/staff'
+  import {query,create,update} from '@/api/staff'
   export default {
     props: ['staffId'],
     data() {
@@ -52,7 +52,7 @@
     created() {
       if(this.staffId) {
         //存在则载入信息，初始化
-        this.single({staffId: this.staffId}).then(data => {
+        query({staffId: this.staffId}).then(data => {
           this.form.staffName=data.staffName;
           this.form.permissionId=data.permissionId;
           this.form.password=data.password;
@@ -66,30 +66,31 @@
           password:this.form.password,
         };
         this.$refs["form"].validate((valid) => {
-          if(this.staffId) {
-            //update
-            params.staffId = this.staffId;
-            this.update(params).then(data => {
-              if(data.code==0) {
-                this.$message.success('更新信息成功！');
-                this.$emit('done');
-              }
-              else{
-                this.$message.error('更新信息失败！');
-                this.$emit('done');
-              }
-            });
-          } else {
-            //new
-            this.create(params).then(data => {
-              if(data.code==0) {
-                this.$message.success('创建员工成功！');
-                this.$emit('done');
-              }else{
-                this.$message.error('创建员工失败！');
-                this.$emit('done');
-              }
-            });
+          if(valid) {
+            if (this.staffId) {
+              //update
+              params.staffId = this.staffId;
+              update(params).then(data => {
+                if (data.code === 0) {
+                  this.$message.success('更新信息成功！');
+                  this.$emit('done');
+                } else {
+                  this.$message.error('更新信息失败！');
+                  this.$emit('done');
+                }
+              });
+            } else {
+              //new
+              create(params).then(data => {
+                if (data.code === 0) {
+                  this.$message.success('创建员工成功！');
+                  this.$emit('done');
+                } else {
+                  this.$message.error('创建员工失败！');
+                  this.$emit('done');
+                }
+              });
+            }
           }
         });
       },

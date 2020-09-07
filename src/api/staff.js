@@ -8,10 +8,11 @@ export function login(data) {
   })
 }
 
-export function create() {
+export function create(data) {
   return request({
-    url: '/staff/create',
+    url: '/staff/register',
     method: 'post',
+    data
   })
 }
 
@@ -23,27 +24,26 @@ export function update(data) {
   })
 }
 
-export function remove(id) {
+export function remove(data) {
   return request({
-    url: '/staff/remove',
+    url: '/staff/delete',
     method: 'post',
-   id,
+   data,
   })
 }
 
-export function list() {
+export function list(data) {
   return request({
-    url: '/staff/list',
-    method: 'get'
+    url: '/staff/select',
+    method: 'get',
+    data:{data}
   })
 }
 
-export function query(id) {
+export function query(data) {
   return request({
-    url: '/staff/query',
+    url: '/staff/selectOne',
     method: 'post',
-    data: {
-      id
-    }
+    data
   })
 }

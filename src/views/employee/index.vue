@@ -11,7 +11,7 @@
           <el-table-column prop="staffId" label="员工编号" align="center" />
           <el-table-column prop="staffName" label="员工姓名" align="center" />
           <el-table-column prop="permissionId" label="员工权限" align="center" />
-          <el-table-column prop="password" label="用户密码" align="center" />
+         <!-- <el-table-column prop="password" label="用户密码" align="center" />-->
 
           <el-table-column label="操作" align="center" width="200">
             <template slot-scope="scope">
@@ -69,9 +69,11 @@
           offset:this.listQuery.offset,
           limit:this.listQuery.limit
         }
-        this.list(params).then((data)=>{
-          this.staff=data.list
+        list(params).then((data)=>{
+          this.staff=data.data
           this.total=data.total
+          console.log(data)
+          console.log(data.total)
         })
       },
       // 页码切换
@@ -113,10 +115,10 @@
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          this.remove({
+          remove({
             staffId: id,
           }).then(res => {
-            if(res.code == '0') {
+            if(res.code ===0) {
               this.$message.success('删除成功');
               this.refresh();
             }
