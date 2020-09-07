@@ -36,7 +36,7 @@ export function list(data) {
   return request({
     url: '/staff/select',
     method: 'get',
-    data:{data}
+   data
   })
 }
 
