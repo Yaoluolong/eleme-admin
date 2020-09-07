@@ -81,7 +81,7 @@
               });
             } else {
               //new
-              params.staffName=this.staffName
+              params.staffName=this.form.staffName
               create(params).then(data => {
                 if (data.code === 0) {
                   this.$message.success('创建员工成功！');
