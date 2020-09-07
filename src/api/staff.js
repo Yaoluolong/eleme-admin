@@ -35,7 +35,7 @@ export function remove(data) {
 export function list(data) {
   return request({
     url: '/staff/select',
-    method: 'get',
+    method: 'post',
    data
   })
 }
