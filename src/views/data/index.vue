@@ -10,12 +10,6 @@
           <el-table-column prop="commodityId" label="商品编号" align="center" />
           <el-table-column prop="orderNumber" label="订单数量" align="center" />
           <el-table-column prop="orderAmount" label="订单金额" align="center" />
-
-          <el-table-column label="操作" align="center" width="200">
-            <template slot-scope="scope">
-              <el-button type="text" size="medium" @click="">明细</el-button>
-            </template>
-          </el-table-column>
         </el-table>
         <div class="margin-top-10 text-align-center">
           <pagination :total="total" @pageChange="pageChange" />
