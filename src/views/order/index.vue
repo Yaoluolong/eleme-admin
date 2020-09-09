@@ -21,30 +21,12 @@
 
       </el-row>
       <el-dialog :title="'订单详情'" :visible.sync="dialogFormVisible" class="dialog-form">
-        <el-form :model="form">
-
-          <el-form-item label="订单id：" :label-width="formLabelWidth">
-            <el-input v-model="form.orderId" disabled="true" />
-          </el-form-item>
-          <el-form-item label="订单状态：" :label-width="formLabelWidth">
-            <el-input v-model="form.status" disabled="true" />
-          </el-form-item>
-          <el-form-item label="订单数量：" :label-width="formLabelWidth">
-            <el-input v-model="form.orderAmount" disabled="true" />
-          </el-form-item>
-          <el-form-item label="订单价格：" :label-width="formLabelWidth">
-            <el-input v-model="form.orderNumber" disabled="true" />
-          </el-form-item>
-          <el-form-item label="商品名字：" :label-width="formLabelWidth">
-            <el-input v-model="form.commodityName" disabled="true" />
-          </el-form-item>
-          <el-form-item label="商品价格：" :label-width="formLabelWidth">
-            <el-input v-model="form.commodityName" disabled="true" />
-          </el-form-item>
-          <el-form-item label="商品数量：" :label-width="formLabelWidth">
-            <el-input v-model="form.number" disabled="true" />
-          </el-form-item>
-        </el-form>
+        <el-table :data="form">
+          <el-table-column prop="commoditytId" label="商品id" align="center" />
+          <el-table-column prop="commoditytName" label="商品名字" align="center" />
+          <el-table-column prop="commodityMoney" label="商品金额" align="center" />
+          <el-table-column prop="number" label="商品数量" align="center" />
+        </el-table>
       </el-dialog>
 
     </div>
@@ -58,16 +40,8 @@
       return {
 
         dialogFormVisible: false,
-        formLabelWidth: '150px',
-        form: {
-          orderId: '',
-          status: '',
-          orderAmount: '',
-          orderNumber: '',
-          commodityName: '',
-          commodityMoney:'',
-          number:''
-        },
+        formLabelWidth: '200px',
+        form: [],
         orders: []
       }
     },
@@ -77,19 +51,13 @@
     },
     methods: {
       detail(val) {
-        this.form.orderId = val.orderId
-        this.form.status = val.status
-        this.form.orderAmount = val.orderAmount
-        this.form.orderNumber = val.orderNumber
-        this.form.commodityName = val.commodityList.commodityName
-        this.form.commodityMoney = val.commodityList.commodityMoney
-        this.form.number = val.commodityList.number
-        this.dialogFormVisible = true
+        this.form= val.commodityList
+        this.dialogFormVisible=true
       },
       //获取商品
       getOrder(){
         list().then((data)=>{
-          this.orders=data.data.list
+          this.orders=data.data
           this.orders.forEach(item =>{
             if(item.status===0){
               item.status='待完成'
