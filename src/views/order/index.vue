@@ -88,7 +88,7 @@
       },
       //获取商品
       getOrder(){
-        list(params).then((data)=>{
+        list().then((data)=>{
           this.orders=data.data.list
           this.orders.forEach(item =>{
             if(item.status===0){
