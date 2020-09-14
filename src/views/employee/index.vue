@@ -71,6 +71,15 @@
         }
         list(params).then((data)=>{
           this.staff=data.data
+          this.staff.forEach(item =>{
+            if(item.permissionId==1){
+              item.permissionId='超级管理员'
+            }else if(item.permissionId==2){
+              item.permissionId='普通管理员'
+            }else if(item.permissionId==3){
+              item.permissionId='用户'
+            }
+          })
           this.total=data.total
         })
       },
@@ -116,7 +125,7 @@
           remove({
             staffId: id,
           }).then(res => {
-            if(res.code ===0) {
+            if(res.code ==0) {
               this.$message.success('删除成功');
               this.refresh();
             }

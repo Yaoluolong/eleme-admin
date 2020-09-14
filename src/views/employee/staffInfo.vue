@@ -2,10 +2,12 @@
   <div>
     <el-form :model="form" :rules="rules" ref="form" label-width="120px" label-position="left">
       <el-form-item  label="员工姓名" prop="staffName">
-        <el-input  :disabled="staffId" v-model="form.staffName" placeholder="请输入员工姓名" size="small"></el-input>
+        <el-input  :disabled="isManage" v-model="form.staffName" placeholder="请输入员工姓名" size="small"></el-input>
       </el-form-item>
-      <el-form-item label="员工权限" prop="permissionId">
-        <el-input v-model="form.permissionId" placeholder="请输入员工权限" size="small"></el-input>
+      <el-form-item  label="员工权限" prop="permissionId">
+        <el-radio v-model="form.permissionId" label="1" >超级管理员</el-radio>
+        <el-radio v-model="form.permissionId" label="2" >普通管理员</el-radio>
+        <el-radio v-model="form.permissionId" label="3" >用户</el-radio>
       </el-form-item>
       <el-form-item  label="员工密码" prop="password">
         <el-input type="password" v-model="form.password" placeholder="请输入员工密码" size="small"></el-input>
@@ -24,6 +26,7 @@
     props: ['staffId'],
     data() {
       return {
+        isManage:false,
         form: {
           staffId:'',
           staffName:'',
@@ -51,6 +54,7 @@
     },
     created() {
       if(this.staffId) {
+        this.isManage=true
         //存在则载入信息，初始化
         query({staffId: this.staffId}).then(data => {
           this.form.staffName=data.staffName;
@@ -71,7 +75,7 @@
               //update
               params.staffId = this.staffId;
               update(params).then(data => {
-                if (data.code === 0) {
+                if (data.code == 0) {
                   this.$message.success('更新信息成功！');
                   this.$emit('done');
                 } else {
@@ -83,7 +87,7 @@
               //new
               params.staffName=this.form.staffName
               create(params).then(data => {
-                if (data.code === 0) {
+                if (data.code == 0) {
                   this.$message.success('创建员工成功！');
                   this.$emit('done');
                 } else {

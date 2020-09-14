@@ -97,7 +97,7 @@ export default {
     }
   },
   created(){
-    /*this.commodity=[{
+   /* this.commodity=[{
       commodityId:1,
       commodityName:'123',
       commodityMoney:'456',
@@ -115,7 +115,15 @@ export default {
       this.form.image = val.commodityImageUrl
       this.form.describe = val.describe
       this.form.material = val.materials
-      this.form.sort = val.sortId
+      if(val.sortId==1){
+        this.form.sort='甜品'
+      }else if(val.sortId==2){
+        this.form.sort='小吃'
+      }else if(val.sortId==3){
+        this.form.sort='饮料'
+      }else if(val.sortId==4){
+        this.form.sort='套餐'
+      }
       this.dialogFormVisible = true
     },
     //获取商品
@@ -172,7 +180,7 @@ export default {
         type: 'warning'
       }).then(() => {
        remove({commodityId:id}).then(res => {
-          if(res.code === 0) {
+          if(res.code == 0) {
             this.$message.success('删除成功');
             this.refresh();
           }

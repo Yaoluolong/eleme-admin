@@ -59,23 +59,22 @@
         list().then((data)=>{
           this.orders=data.data
           this.orders.forEach(item =>{
-            if(item.status===0){
+            if(item.status==0){
               item.status='待完成'
-            }else if(item.status===1){
+            }else if(item.status==1){
               item.status='已完成'
-            }else if(item.status===2){
+            }else if(item.status==2){
               item.status='待退款'
-            }else if(item.status===3){
+            }else if(item.status==3){
               item.status='已退款'
             }
           })
         })
-      },
 
+      },
 
       refresh() {
         this.orders=[],
-
         this.getOrder()
       },
     }

@@ -27,6 +27,7 @@ export default {
   },
   data() {
     return {
+      total:5,
       statistics: [{
         commodityId: '1',
         orderNumber: 10,
