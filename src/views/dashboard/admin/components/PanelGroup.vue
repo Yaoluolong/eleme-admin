@@ -66,14 +66,14 @@ export default {
   },
   data() {
     return {
-      staff: 0,
-      evaluate: 0,
-      promotion: 0,
-      commodity: 0
+      staff: 3,
+      evaluate: 7,
+      promotion: 2,
+      commodity: 15
     }
   },
   mounted() {
-    this.fetchData()
+   /* this.fetchData()*/
   },
   methods: {
     fetchData() {

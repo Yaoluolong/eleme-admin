@@ -8,8 +8,6 @@
       :page-size="page.limit"
       layout="total, sizes, prev, pager, next, jumper"
       :total="total"
-      @size-change="handleSizeChange"
-      @current-change="handleCurrentChange"
     />
   </div>
 </template>
@@ -33,7 +31,7 @@ export default {
   },
   methods: {
     // 每页条数变更
-    handleSizeChange(val) {
+   /* handleSizeChange(val) {
       this.page.limit = val
       this.page.page = 1
       this.$emit('pageChange', this.page)
@@ -41,7 +39,7 @@ export default {
     handleCurrentChange(val) {
       this.page.page = val
       this.$emit('pageChange', this.page)
-    }
+    }*/
   }
 }
 </script>

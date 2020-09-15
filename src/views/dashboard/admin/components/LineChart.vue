@@ -42,7 +42,7 @@ export default {
         moment().subtract(1, 'days'),
         moment()
       ],
-      orderData: [0, 0, 0, 0, 0, 0, 0]
+      orderData: [10, 20, 30, 50, 20, 10, 20]
     }
   },
   computed: {
@@ -68,7 +68,7 @@ export default {
     }
   },
   mounted() {
-    this.fetchData()
+    /*this.fetchData()*/
     this.$nextTick(() => {
       this.initChart()
     })

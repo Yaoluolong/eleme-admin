@@ -12,7 +12,7 @@
           <el-table-column prop="orderAmount" label="订单金额" align="center" />
         </el-table>
         <div class="margin-top-10 text-align-center">
-          <pagination :total="total" @pageChange="pageChange" />
+          <pagination :total="total"  />
         </div>
       </el-row>
     </div>
