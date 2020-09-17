@@ -138,11 +138,11 @@
       },
       refresh() {
         this.commodity=[],
-          this.listQuery= {
+         /* this.listQuery= {
             currentPage: 1,
             limit: 10,
             offset: 0
-          }
+          }*/
         this.getStaff()
       },
     }

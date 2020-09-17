@@ -147,7 +147,7 @@ export default {
       this.listQuery.offset = (item.page - 1) * item.limit;
       this.getProduct();
     },
-    //增加完成
+    //增加完成ww a
     addDoneCallback() {
       this.addDialogVisible = false;
       this.refresh();
@@ -193,11 +193,11 @@ export default {
     },
     refresh() {
       this.commodity=[],
-        this.listQuery= {
+       /* this.listQuery= {
         currentPage: 1,
           limit: 10,
           offset: 0
-      }
+      }*/
       this.getProduct()
     },
   }
